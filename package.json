@@ -1,0 +1,14 @@
+{
+  "name": "slide-uploader-for-slack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/euglena1215/slide-uploader-for-slack.git",
+  "author": "Shintani Teppei <teppest1215@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/google-apps-script": "^0.0.32"
+  },
+  "devDependencies": {
+    "tslint": "^5.11.0"
+  }
+}
