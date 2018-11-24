@@ -1,10 +1,9 @@
+import { API_TOKEN, TARGET_CHANNEL } from "../const";
+
 const ENDPOINT = {
   CHANNELS_HISTORY: "https://slack.com/api/channels.history",
   FILES_SHARED_PUBLIC_URL: "https://slack.com/api/files.sharedPublicURL",
 };
-
-const API_TOKEN = PropertiesService.getScriptProperties().getProperty("SLACK_API_TOKEN");
-const TARGET_CHANNEL = PropertiesService.getScriptProperties().getProperty("SLACK_TARGET_CHANNEL");
 
 export interface PdfFile {
   fileId: string;
