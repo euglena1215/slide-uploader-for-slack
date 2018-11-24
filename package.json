@@ -1,14 +1,27 @@
 {
-  "name": "slide-uploader-for-slack",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/euglena1215/slide-uploader-for-slack.git",
-  "author": "Shintani Teppei <teppest1215@gmail.com>",
+  "name": "gas-typescript-webpack",
+  "version": "2.0.0",
+  "description": "This is an example code for writing Google Apps Script in TypeScript and building with webpack",
+  "main": "src/index.ts",
+  "author": "Naoki Sawada",
   "license": "MIT",
-  "dependencies": {
-    "@types/google-apps-script": "^0.0.32"
+  "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "push": "clasp push",
+    "watch": "watch 'npm run build && npm run push' src/",
+    "build": "webpack --mode production"
   },
   "devDependencies": {
-    "tslint": "^5.11.0"
-  }
+    "@types/google-apps-script": "^0.0.28",
+    "@types/node": "^10.12.10",
+    "es3ify-webpack-plugin": "^0.0.1",
+    "gas-webpack-plugin": "^0.3.0",
+    "ts-loader": "^5.3.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.5",
+    "watch": "^1.0.2",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {}
 }
