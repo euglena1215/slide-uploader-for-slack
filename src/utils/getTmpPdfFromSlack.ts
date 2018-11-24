@@ -6,19 +6,29 @@ const ENDPOINT = {
 const API_TOKEN = PropertiesService.getScriptProperties().getProperty("SLACK_API_TOKEN");
 const TARGET_CHANNEL = PropertiesService.getScriptProperties().getProperty("SLACK_TARGET_CHANNEL");
 
-export const getTmpPdfFromSlack = () => {
+interface PdfFile {
+  fileId: string;
+  pdfUrl: string;
+  uploadUser: string;
+  timestamp: string;
+}
+
+export const getTmpPdfFromSlack = (): PdfFile[] => {
   const res = UrlFetchApp.fetch(`${ENDPOINT.CHANNELS_HISTORY}?token=${API_TOKEN}&channel=${TARGET_CHANNEL}`);
   const json = JSON.parse(res.getContentText());
   if (!json.ok) {
     throw new Error(`Failed request: ${ENDPOINT.CHANNELS_HISTORY}?token=${API_TOKEN}&channel=${TARGET_CHANNEL}`);
   }
 
-  return [].concat(
-    ...json.messages.map(message => {
-      if (message.files === undefined) {
-        return [];
-      }
-      return message.files.map(file => (file.filetype === "pdf" ? file.url_private_download : ""));
-    })
-  );
+  return json.messages
+    .filter(message => message.files !== undefined && message.files[0].filetype === "pdf")
+    .map(message => {
+      const file = message.files[0];
+      return {
+        fileId: file.id,
+        pdfUrl: file.url_private_download,
+        uploadUser: message.user,
+        timestamp: message.ts,
+      };
+    });
 };
