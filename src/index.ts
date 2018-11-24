@@ -1,6 +1,5 @@
-import Echo from "./Echo";
+import { getTmpPdfFromSlack } from "./utils/getTmpPdfFromSlack";
 
 global.main = () => {
-  const echo = new Echo();
-  echo.print("world.");
+  Logger.log(getTmpPdfFromSlack());
 };

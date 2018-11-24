@@ -1,11 +1,9 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {},
-    "rules": {
-        "interface-name": [true, "never-prefix"]
-    },
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": ["@netflix/tslint-config", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "no-any": true
+  },
+  "rulesDirectory": []
 }
