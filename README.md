@@ -60,6 +60,18 @@ $ clasp open
 | ------------------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | Getting [here](https://api.slack.com/methods/channels.history/test) | Copy URL of 1. Create SpreadSheet | Create new Folder and Copy `https://drive.google.com/drive/u/0/folders/DRIVE_FOLDER_ID` | Open target channel and Copy Link anything post like `https://hoge-team.slack.com/archives/SLACK_TARGET_CHANNEL/p1543071858000200`. |
 
+### Set Trigger
+
+1. Open script file from browser.
+
+```
+$ clasp open
+```
+
+2. Set trigger
+
+Select [Edit] -> [All trigger], set trigger to `main` fuction by time base(Recommend per 30 minutes).
+
 ## Usage
 
 ```
