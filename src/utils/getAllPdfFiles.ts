@@ -10,8 +10,8 @@ export const getAllPdfFiles = () => {
 const arrayToPdfFile = (arr): PdfFile => {
   return {
     fileId: arr[0],
-    pdfUrl: arr[1],
-    imgUrl: arr[2],
+    pdfUrl: arr[1] + `&access_token=${ScriptApp.getOAuthToken()}`,
+    imgUrl: arr[2] + `&access_token=${ScriptApp.getOAuthToken()}`,
     uploadUser: arr[3],
     timestamp: arr[4],
   };

@@ -23,15 +23,13 @@ export const savePdfFileToDrive = (pdfFiles: PdfFile[]): PdfFile[] => {
     img.makeCopy(imgName, folder);
     img.setTrashed(true);
 
-    pdfFile.pdfUrl =
-      DriveApp.getFilesByName(pdfName)
-        .next()
-        .getDownloadUrl() + `&access_token=${ScriptApp.getOAuthToken()}`;
+    pdfFile.pdfUrl = DriveApp.getFilesByName(pdfName)
+      .next()
+      .getDownloadUrl();
 
-    pdfFile.imgUrl =
-      DriveApp.getFilesByName(imgName)
-        .next()
-        .getDownloadUrl() + `&access_token=${ScriptApp.getOAuthToken()}`;
+    pdfFile.imgUrl = DriveApp.getFilesByName(imgName)
+      .next()
+      .getDownloadUrl();
 
     return pdfFile;
   });
