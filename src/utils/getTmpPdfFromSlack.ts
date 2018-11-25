@@ -10,6 +10,7 @@ export interface PdfFile {
   pdfUrl: string;
   imgUrl: string;
   uploadUser: string;
+  aspectRatio: number;
   timestamp: string;
 }
 
@@ -32,6 +33,7 @@ export const getTmpPdfFromSlack = (): Array<PdfFile> => {
         pdfUrl: file.url_private_download,
         imgUrl: file.thumb_pdf,
         uploadUser: message.user,
+        aspectRatio: file.thumb_pdf_w / file.thumb_pdf_h,
         timestamp: message.ts,
       };
     })

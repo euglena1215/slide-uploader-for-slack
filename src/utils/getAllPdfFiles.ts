@@ -13,6 +13,7 @@ const arrayToPdfFile = (arr): PdfFile => {
     pdfUrl: arr[1] + `&access_token=${ScriptApp.getOAuthToken()}`,
     imgUrl: arr[2] + `&access_token=${ScriptApp.getOAuthToken()}`,
     uploadUser: arr[3],
-    timestamp: arr[4],
+    aspectRatio: arr[4],
+    timestamp: arr[5],
   };
 };

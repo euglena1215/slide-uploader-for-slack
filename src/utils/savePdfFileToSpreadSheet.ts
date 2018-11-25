@@ -3,7 +3,14 @@ import { PdfFile } from "./getTmpPdfFromSlack";
 
 export const savePdfFileToSpreadSheet = (pdfFiles: PdfFile[]) => {
   pdfFiles.forEach(pdfFile => {
-    PDF_FILES_SHEET.appendRow([pdfFile.fileId, pdfFile.pdfUrl, pdfFile.imgUrl, pdfFile.uploadUser, pdfFile.timestamp]);
+    PDF_FILES_SHEET.appendRow([
+      pdfFile.fileId,
+      pdfFile.pdfUrl,
+      pdfFile.imgUrl,
+      pdfFile.uploadUser,
+      pdfFile.aspectRatio,
+      pdfFile.timestamp,
+    ]);
   });
 };
 
