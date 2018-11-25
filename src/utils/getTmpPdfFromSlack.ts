@@ -25,7 +25,12 @@ export const getTmpPdfFromSlack = (): Array<PdfFile> => {
   }
 
   return json.messages
-    .filter(message => message.files !== undefined && message.files[0].filetype === "pdf")
+    .filter(
+      message =>
+        message.files !== undefined &&
+        message.files[0].filetype === "pdf" &&
+        message.files[0].thumb_pdf_w >= message.files[0].thumb_pdf_h
+    )
     .map(message => {
       const file = message.files[0];
       return {
