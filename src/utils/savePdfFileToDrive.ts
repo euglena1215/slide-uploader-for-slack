@@ -1,9 +1,9 @@
 import { API_TOKEN } from "../const";
-import { PdfFile } from "./getTmpPdfFromSlack";
+import { Slide } from "./getTmpPdfFromSlack";
 
 const DRIVE_FOLDER_ID = PropertiesService.getScriptProperties().getProperty("DRIVE_FOLDER_ID");
 
-export const savePdfFileToDrive = (pdfFiles: PdfFile[]): PdfFile[] => {
+export const savePdfFileToDrive = (pdfFiles: Slide[]): Slide[] => {
   const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
 
   return pdfFiles.map(pdfFile => {

@@ -1,7 +1,7 @@
 import { PDF_FILES_SHEET } from "../const";
-import { PdfFile } from "./getTmpPdfFromSlack";
+import { Slide } from "./getTmpPdfFromSlack";
 
-export const savePdfFileToSpreadSheet = (pdfFiles: PdfFile[]) => {
+export const savePdfFileToSpreadSheet = (pdfFiles: Slide[]) => {
   pdfFiles.forEach(pdfFile => {
     PDF_FILES_SHEET.appendRow([
       pdfFile.fileId,

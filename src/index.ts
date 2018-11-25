@@ -2,6 +2,9 @@ import { getTmpPdfFromSlack } from "./utils/getTmpPdfFromSlack";
 import { savePdfFileToSpreadSheet, getLastSaveFileId } from "./utils/savePdfFileToSpreadSheet";
 import { savePdfFileToDrive } from "./utils/savePdfFileToDrive";
 import { getAllPdfFiles } from "./utils/getAllPdfFiles";
+import { getUserListFromSlack } from "./utils/getUserListFromSlack";
+import { saveUserToDrive } from "./utils/saveUserToDrive";
+import { saveUserToSpreadSheet } from "./utils/saveUserToSpreadSheet";
 
 global.main = () => {
   const unSavedPdfFiles = getUnsavedPdffiles();
@@ -15,6 +18,13 @@ global.doGet = e => {
   res.setContent(JSON.stringify(getAllPdfFiles()));
 
   return res;
+};
+
+global.saveUserList = () => {
+  const userList = getUserListFromSlack();
+  const savedUserList = saveUserToDrive(userList);
+
+  saveUserToSpreadSheet(savedUserList);
 };
 
 const getUnsavedPdffiles = () => {

@@ -1,5 +1,5 @@
 import { PDF_FILES_SHEET } from "../const";
-import { PdfFile } from "./getTmpPdfFromSlack";
+import { Slide } from "./getTmpPdfFromSlack";
 
 export const getAllPdfFiles = () => {
   return PDF_FILES_SHEET.getRange(2, 1, PDF_FILES_SHEET.getLastRow() - 1, 5)
@@ -7,7 +7,7 @@ export const getAllPdfFiles = () => {
     .map(arrayToPdfFile);
 };
 
-const arrayToPdfFile = (arr): PdfFile => {
+const arrayToPdfFile = (arr): Slide => {
   return {
     fileId: arr[0],
     pdfUrl: arr[1] + `&access_token=${ScriptApp.getOAuthToken()}`,

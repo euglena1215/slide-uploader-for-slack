@@ -1,11 +1,6 @@
-import { API_TOKEN, TARGET_CHANNEL } from "../const";
+import { API_TOKEN, TARGET_CHANNEL, ENDPOINT } from "../const";
 
-const ENDPOINT = {
-  CHANNELS_HISTORY: "https://slack.com/api/channels.history",
-  FILES_SHARED_PUBLIC_URL: "https://slack.com/api/files.sharedPublicURL",
-};
-
-export interface PdfFile {
+export interface Slide {
   fileId: string;
   pdfUrl: string;
   imgUrl: string;
@@ -17,7 +12,7 @@ export interface PdfFile {
 /*
   pdfFileを古いもの順で返す
 */
-export const getTmpPdfFromSlack = (): Array<PdfFile> => {
+export const getTmpPdfFromSlack = (): Array<Slide> => {
   const res = UrlFetchApp.fetch(`${ENDPOINT.CHANNELS_HISTORY}?token=${API_TOKEN}&channel=${TARGET_CHANNEL}`);
   const json = JSON.parse(res.getContentText());
   if (!json.ok) {
