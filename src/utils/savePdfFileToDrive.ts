@@ -23,13 +23,17 @@ export const savePdfFileToDrive = (pdfFiles: Slide[]): Slide[] => {
     img.makeCopy(imgName, folder);
     img.setTrashed(true);
 
-    pdfFile.pdfUrl = DriveApp.getFilesByName(pdfName)
+    const pdfId = DriveApp.getFilesByName(pdfName)
       .next()
-      .getDownloadUrl();
+      .setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW)
+      .getId();
+    pdfFile.pdfUrl = `https://drive.google.com/uc?export=download&id=${pdfId}`;
 
-    pdfFile.imgUrl = DriveApp.getFilesByName(imgName)
+    const imgId = DriveApp.getFilesByName(imgName)
       .next()
-      .getDownloadUrl();
+      .setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW)
+      .getId();
+    pdfFile.imgUrl = `https://drive.google.com/uc?export=download&id=${imgId}`;
 
     return pdfFile;
   });

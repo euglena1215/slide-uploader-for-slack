@@ -10,8 +10,8 @@ export const getAllPdfFiles = () => {
 const arrayToPdfFile = (arr): Slide => {
   return {
     fileId: arr[0],
-    pdfUrl: arr[1] + `&access_token=${ScriptApp.getOAuthToken()}`,
-    imgUrl: arr[2] + `&access_token=${ScriptApp.getOAuthToken()}`,
+    pdfUrl: arr[1],
+    imgUrl: arr[2],
     uploadUser: arr[3],
     aspectRatio: arr[4],
     timestamp: arr[5],
