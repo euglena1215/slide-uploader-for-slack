@@ -6,11 +6,16 @@ import { getUserListFromSlack, User } from "./utils/getUserListFromSlack";
 import { saveUserToDrive } from "./utils/saveUserToDrive";
 import { saveUserToSpreadSheet } from "./utils/saveUserToSpreadSheet";
 import { getUserLists } from "./utils/getUserLists";
+import { BUILD_WEBHOOK } from "./const";
 
 global.main = () => {
   const unSavedPdfFiles = getUnsavedPdffiles();
   const savedPdfFiles = savePdfFileToDrive(unSavedPdfFiles);
   savePdfFileToSpreadSheet(savedPdfFiles);
+
+  if (savedPdfFiles.length > 0) {
+    rebuildWebpage();
+  }
 };
 
 global.doGet = e => {
@@ -36,6 +41,13 @@ const mixSlideAndUser = (slides: Slide[], users: User[]) => {
       ...slide,
       uploadUser,
     };
+  });
+};
+
+const rebuildWebpage = () => {
+  UrlFetchApp.fetch(BUILD_WEBHOOK, {
+    method: "post",
+    payload: {},
   });
 };
 
