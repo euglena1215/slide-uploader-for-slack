@@ -11,6 +11,6 @@ const arrayToUser = (arr): User => {
   return {
     userId: arr[0],
     name: arr[1],
-    imgUrl: arr[2],
+    imgUrl: arr[2] + `&access_token=${ScriptApp.getOAuthToken()}`,
   };
 };

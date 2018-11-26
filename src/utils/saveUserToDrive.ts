@@ -8,17 +8,17 @@ export const saveUserToDrive = (userList: User[]): User[] => {
 
   return userList.map(user => {
     const imgName = `${user.userId}.png`;
+    // const imgBlob = UrlFetchApp.fetch(user.imgUrl, {
+    //   headers: { Authorization: `Bearer ${API_TOKEN}` },
+    // });
     const imgBlob = UrlFetchApp.fetch(user.imgUrl);
     const img = DriveApp.createFile(imgBlob);
     img.makeCopy(imgName, folder);
     img.setTrashed(true);
 
-    const imgId = DriveApp.getFilesByName(imgName)
+    user.imgUrl = DriveApp.getFilesByName(imgName)
       .next()
-      .setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.VIEW)
-      .getId();
-
-    user.imgUrl = `https://drive.google.com/uc?export=download&id=${imgId}`;
+      .getDownloadUrl();
 
     return user;
   });
