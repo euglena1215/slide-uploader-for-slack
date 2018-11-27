@@ -7,6 +7,7 @@ export interface Slide {
   uploadUser: string;
   aspectRatio: number;
   timestamp: string;
+  keywords: string;
 }
 
 /*
@@ -18,8 +19,7 @@ export const getTmpPdfFromSlack = (): Array<Slide> => {
   if (!json.ok) {
     throw new Error(`Failed request: ${ENDPOINT.CHANNELS_HISTORY}?token=${API_TOKEN}&channel=${TARGET_CHANNEL}`);
   }
-
-  return json.messages
+  const slides = json.messages
     .filter(
       message =>
         message.files !== undefined &&
@@ -35,7 +35,21 @@ export const getTmpPdfFromSlack = (): Array<Slide> => {
         uploadUser: message.user,
         aspectRatio: file.thumb_pdf_w / file.thumb_pdf_h,
         timestamp: message.ts,
+        threadTs: message.thread_ts,
       };
     })
     .reverse();
+
+  return slides.map(slide => {
+    const keywords = json.messages
+      .filter(
+        message => message.thread_ts !== undefined && message.thread_ts === slide.threadTs && message.type === "message"
+      )
+      .map(message => message.text)
+      .join(" ");
+    slide.keywords = keywords;
+    delete slide.threadTs;
+
+    return slide;
+  });
 };

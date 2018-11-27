@@ -10,6 +10,7 @@ export const savePdfFileToSpreadSheet = (pdfFiles: Slide[]) => {
       pdfFile.uploadUser,
       pdfFile.aspectRatio,
       pdfFile.timestamp,
+      pdfFile.keywords,
     ]);
   });
 };
