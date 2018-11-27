@@ -8,9 +8,6 @@ export const saveUserToDrive = (userList: User[]): User[] => {
 
   return userList.map(user => {
     const imgName = `${user.userId}.png`;
-    // const imgBlob = UrlFetchApp.fetch(user.imgUrl, {
-    //   headers: { Authorization: `Bearer ${API_TOKEN}` },
-    // });
     const imgBlob = UrlFetchApp.fetch(user.imgUrl);
     const img = DriveApp.createFile(imgBlob);
     img.makeCopy(imgName, folder);

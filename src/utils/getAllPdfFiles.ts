@@ -2,7 +2,7 @@ import { PDF_FILES_SHEET } from "../const";
 import { Slide } from "./getTmpPdfFromSlack";
 
 export const getAllPdfFiles = () => {
-  return PDF_FILES_SHEET.getRange(2, 1, PDF_FILES_SHEET.getLastRow() - 1, 6)
+  return PDF_FILES_SHEET.getRange(2, 1, PDF_FILES_SHEET.getLastRow() - 1, 7)
     .getValues()
     .map(arrayToPdfFile);
 };
